@@ -27,17 +27,17 @@ sub links {
 
 my Cro::Service $http = Cro::HTTP::Server.new(
     http => <1.1>,
-    host => %*ENV<HELLO_HOST> ||
-        die("Missing HELLO_HOST in environment"),
-    port => %*ENV<HELLO_PORT> ||
-        die("Missing HELLO_PORT in environment"),
+    host => %*ENV<SERVER_HOST> ||
+        die("Missing SERVER_HOST in environment"),
+    port => %*ENV<SERVER_PORT> ||
+        die("Missing SERVER_PORT in environment"),
     application => $route,
     after => [
         Cro::HTTP::Log::File.new(logs => $*OUT, errors => $*ERR)
     ]
 );
 $http.start;
-say "Listening at http://%*ENV<HELLO_HOST>:%*ENV<HELLO_PORT>";
+say "Listening at http://%*ENV<SERVER_HOST>:%*ENV<SERVER_PORT>";
 react {
     whenever signal(SIGINT) {
         say "Shutting down...";
