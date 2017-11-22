@@ -11,7 +11,7 @@ my $t0 = DateTime.now.Instant;
 
 my @promises;
 
-sub MAIN(:$domain="https://perl6.org") {
+sub MAIN(:$domain="http://localhost:20000") {
 
     my @urls=($domain);
 
